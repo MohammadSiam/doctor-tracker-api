@@ -52,7 +52,7 @@ pnpm build && pnpm start
 
 Environment variables are validated with zod at startup. The process refuses to boot with a clear message when something is missing.
 
-**Deploying to Render:** "New → Blueprint" picks up `render.yaml`; or create a Web Service with build command `corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm build`, start command `pnpm start`, and health check path `/api/health`. Set `MONGODB_URI`, `JWT_SECRET` and `CORS_ORIGINS`. In Atlas, allow Render's outbound IPs (or `0.0.0.0/0` for a demo).
+**Deploying to Render:** "New → Blueprint" picks up `render.yaml`; or create a Web Service with build command `pnpm install --frozen-lockfile --prod=false && pnpm build`, start command `pnpm start`, and health check path `/api/health`. Set `MONGODB_URI`, `JWT_SECRET` and `CORS_ORIGINS`. In Atlas, allow Render's outbound IPs (or `0.0.0.0/0` for a demo).
 **Cold starts:** Render's free tier sleeps after 15 minutes idle. A cron-job.org / UptimeRobot monitor hitting `GET /api/health` every 10 minutes keeps it awake.
 
 ## System architecture
