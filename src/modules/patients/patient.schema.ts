@@ -12,7 +12,11 @@ export const patientFieldsSchema = z.object({
   condition: z.enum(CONDITIONS, 'Select a condition').default('Stable'),
   diagnosis: z.string().trim().min(2, 'Diagnosis is required').max(200),
   notes: z.string().trim().max(1000).optional(),
-  admittedAt: z.coerce.date().max(new Date(Date.now() + 86_400_000), 'Admission date cannot be in the future').optional(),
+  // Checked per request: a `.max(new Date(...))` would freeze "now" at server start.
+  admittedAt: z.coerce
+    .date()
+    .refine((date) => date.getTime() <= Date.now() + 86_400_000, 'Admission date cannot be in the future')
+    .optional(),
 });
 
 export const createPatientSchema = patientFieldsSchema.extend({ doctor: objectId });

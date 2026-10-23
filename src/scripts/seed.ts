@@ -71,6 +71,8 @@ const recentDate = (days: number) => {
   const offset = Math.floor(days * Math.pow(Math.random(), 1.6));
   const date = new Date(Date.now() - offset * 86_400_000);
   date.setHours(faker.number.int({ min: 8, max: 20 }), faker.number.int({ min: 0, max: 59 }));
+  // Today's hour can land later than now; never generate a future timestamp.
+  if (date.getTime() > Date.now()) date.setTime(Date.now() - faker.number.int({ min: 1, max: 120 }) * 60_000);
   return date;
 };
 
