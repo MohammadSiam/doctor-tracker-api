@@ -1,6 +1,6 @@
 # Doctor Tracker: API
 
-> **Live API:** https://doctor-tracker-api-gz8w.onrender.com · **Docs (Swagger):** https://doctor-tracker-api-gz8w.onrender.com/api/docs · **Frontend repo:** [doctor-tracker-web](https://github.com/MohammadSiam/doctor-tracker-web) · **Live app:** https://doctor-tracker-web-eight.vercel.app
+> **Live API:** https://doctor-tracker-api-gz8w.onrender.com · **Docs (Swagger):** https://doctor-tracker-api-gz8w.onrender.com/api/docs · **Frontend repo:** [doctor-tracker-web](https://github.com/MohammadSiam/doctor-tracker-web) · **Live app:** https://doctor-tracker-web-eight.vercel.app (mirror: https://doctor-tracker-web.netlify.app)
 >
 > **Demo login:** `admin@doctortracker.com` / `Admin@123`
 
