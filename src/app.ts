@@ -5,7 +5,9 @@ import express from 'express';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import swaggerUi from 'swagger-ui-express';
 import { env, isProduction } from './config/env.js';
+import { openApiDocument } from './docs/openapi.js';
 import { requireAuth } from './middleware/auth.js';
 import { errorHandler, notFoundHandler } from './middleware/error.js';
 import { authRouter } from './modules/auth/auth.routes.js';
@@ -30,6 +32,18 @@ export function createApp() {
   app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', db: mongoose.connection.readyState === 1 ? 'up' : 'down', uptime: process.uptime() });
   });
+
+  // Public API docs: "Try it out" runs on this origin, so the login cookie authenticates the other calls.
+  app.get('/', (_req, res) => res.redirect('/api/docs'));
+  app.get('/api/openapi.json', (_req, res) => res.json(openApiDocument));
+  app.use(
+    '/api/docs',
+    swaggerUi.serve,
+    swaggerUi.setup(openApiDocument, {
+      customSiteTitle: 'Doctor Tracker API',
+      swaggerOptions: { persistAuthorization: true, withCredentials: true, displayRequestDuration: true },
+    }),
+  );
 
   app.use('/api/auth', authRouter);
   app.use('/api/doctors', requireAuth, doctorRouter);

@@ -79,6 +79,7 @@ The code is organized by feature. Each module has `schema` (zod) → `routes` �
 ```
 src/
 ├── config/        env.ts (validated env) · db.ts
+├── docs/          openapi.ts (spec generated from the zod schemas)
 ├── middleware/    auth.ts · validate.ts · error.ts
 ├── models/        User · Doctor · Patient (+ indexes)
 ├── modules/
@@ -94,10 +95,13 @@ src/
 
 ## API reference
 
-All routes except `/api/health` and `/api/auth/login` require authentication: the `dt_token` cookie, or `Authorization: Bearer <token>`.
+**Interactive docs:** open `/api/docs`, run `POST /api/auth/login` with the pre-filled demo credentials, then try any endpoint. The OpenAPI 3.1 spec is generated from the same zod schemas the routes validate with, so the docs can't drift from the real rules.
+
+All routes except `/api/health`, `/api/docs` and `/api/auth/login` require authentication: the `dt_token` cookie, or `Authorization: Bearer <token>`.
 
 | Method | Endpoint | Description |
 |---|---|---|
+| `GET` | `/api/docs` | Interactive Swagger UI (`/` redirects here); raw spec at `/api/openapi.json` |
 | `GET` | `/api/health` | Liveness + DB status (used by Render and the keep-alive ping) |
 | `POST` | `/api/auth/login` | `{ email, password }` → sets the httpOnly cookie, returns the user. Rate-limited (20 failed attempts / 15 min) |
 | `POST` | `/api/auth/logout` | Clears the cookie |
