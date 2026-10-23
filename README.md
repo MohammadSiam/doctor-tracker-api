@@ -1,6 +1,6 @@
 # Doctor Tracker: API
 
-> **Live API:** _https://doctor-tracker-api.onrender.com/api/health_ (update after deploy) · **Frontend repo:** [doctor-tracker-web](https://github.com/<your-username>/doctor-tracker-web) · **Live app:** _https://doctor-tracker.vercel.app_
+> **Live API:** _https://doctor-tracker-api.onrender.com/api/health_ (update after deploy) · **Frontend repo:** [doctor-tracker-web](https://github.com/MohammadSiam/doctor-tracker-web) · **Live app:** _https://doctor-tracker.vercel.app_
 >
 > **Demo login:** `admin@doctortracker.com` / `Admin@123`
 
@@ -18,7 +18,7 @@ Node.js ≥ 20 · Express 5 · TypeScript · MongoDB Atlas + Mongoose 9 · zod 4
 
 ```bash
 # 1. Clone and install
-git clone https://github.com/<your-username>/doctor-tracker-api.git
+git clone https://github.com/MohammadSiam/doctor-tracker-api.git
 cd doctor-tracker-api
 pnpm install
 
